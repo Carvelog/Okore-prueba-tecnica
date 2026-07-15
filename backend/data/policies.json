@@ -1,0 +1,58 @@
+[
+	{
+		"id": 1,
+		"holder": "John Doe",
+		"type": "health",
+		"status": "active",
+		"premium": 1000
+	},
+	{
+		"id": 2,
+		"holder": "Pepe Doe",
+		"type": "auto",
+		"status": "pending",
+		"premium": 500
+	},
+	{
+		"id": 3,
+		"holder": "Pepa Doe",
+		"type": "home",
+		"status": "expired",
+		"premium": 757
+	},
+	{
+		"id": 4,
+		"holder": "Juan Doe",
+		"type": "health",
+		"status": "active",
+		"premium": 999
+	},
+	{
+		"id": 5,
+		"holder": "Ana Doe",
+		"type": "home",
+		"status": "pending",
+		"premium": 627
+	},
+	{
+		"id": 6,
+		"holder": "Pedro Doe",
+		"type": "auto",
+		"status": "active",
+		"premium": 1200
+	},
+	{
+		"id": 7,
+		"holder": "Maria Doe",
+		"type": "health",
+		"status": "expired",
+		"premium": 1500
+	},
+	{
+		"id": 8,
+		"holder": "Jose Doe",
+		"type": "home",
+		"status": "pending",
+		"premium": 1800
+	}
+]
