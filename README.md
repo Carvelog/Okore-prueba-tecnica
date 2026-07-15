@@ -70,6 +70,31 @@ para /api/policies?limit=5&page=2
 
 ## Frontend
 
+### Levantar proyecto
+
+#### Requisitos previos
+- Node.js >= 24.x
+- npm >= 11.x (o yarn/pnpm)
+
+#### Instalación y configuración
+1. Clonar el repositorio
+2. Instalar dependencias
+
+```bash
+npm install
+```
+
+3. Iniciar el servidor de desarrollo
+```bash
+npm start
+```
+La app se levantará en http://localhost:4200.
+
+O Build de producción
+```bash
+npm run build
+```
+
 ### Decisiones de diseño
 #### SPA pura
 En este caso se instala Angular sin SSR, ya que en el enunciado se da a entender que backend y frontend son independientes.
