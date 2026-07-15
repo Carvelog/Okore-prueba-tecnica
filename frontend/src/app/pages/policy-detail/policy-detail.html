@@ -1,0 +1,53 @@
+<section class="mx-auto max-w-2xl p-6">
+  <button
+    routerLink="/"
+    class="mb-6 inline-block rounded-[5px] bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+  >
+    Volver al listado
+  </button>
+
+  <h1 class="mb-6 text-3xl font-semibold text-gray-900">Detalle de póliza</h1>
+
+  @if (loading()) {
+    <p class="text-gray-600">Cargando póliza...</p>
+  } @else if (error()) {
+    <p class="text-red-600">{{ error() }}</p>
+  } @else if (deleteMessage()) {
+    <p class="text-green-600">{{ deleteMessage() }}</p>
+  } @else if (policy(); as policy) {
+    <dl class="space-y-4 rounded-lg border border-gray-200 bg-white p-6">
+      <div>
+        <dt class="text-sm text-gray-500">ID</dt>
+        <dd class="text-lg font-medium text-gray-900">{{ policy.id }}</dd>
+      </div>
+      <div>
+        <dt class="text-sm text-gray-500">Titular</dt>
+        <dd class="text-lg font-medium text-gray-900">{{ policy.holder | textCapitalize }}</dd>
+      </div>
+      <div>
+        <dt class="text-sm text-gray-500">Tipo</dt>
+        <dd class="text-lg font-medium text-gray-900">{{ policy.type | textCapitalize }}</dd>
+      </div>
+      <div>
+        <dt class="text-sm text-gray-500">Estado</dt>
+        <dd
+          class="inline-block rounded-md px-3 py-1 text-sm font-medium capitalize"
+          [ngClass]="statusBadgeClass[policy.status]"
+        >
+          {{ policy.status | textCapitalize }}
+        </dd>
+      </div>
+      <div>
+        <dt class="text-sm text-gray-500">Prima</dt>
+        <dd class="text-lg font-medium text-gray-900">{{ policy.premium }} €</dd>
+      </div>
+    </dl>
+    <button
+      type="button"
+      class="rounded-[5px] bg-red-600 px-3 py-2 mt-6 text-sm text-white hover:bg-red-700"
+      (click)="deletePolicy(policy.id)"
+    >
+      Eliminar
+    </button>
+  }
+</section>

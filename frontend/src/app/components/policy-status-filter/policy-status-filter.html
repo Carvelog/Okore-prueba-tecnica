@@ -1,0 +1,13 @@
+<label for="status-filter" class="mb-1 block text-sm font-medium text-gray-700">
+  Filtrar por estado
+</label>
+<select
+  id="status-filter"
+  class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:w-48"
+  [value]="selectedStatus()"
+  (change)="onStatusChange($event)"
+>
+  @for (option of statusOptions; track option.value) {
+    <option [value]="option.value">{{ option.label }}</option>
+  }
+</select>

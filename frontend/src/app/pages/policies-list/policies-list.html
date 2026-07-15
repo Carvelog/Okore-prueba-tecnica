@@ -1,0 +1,36 @@
+<section class="mx-auto max-w-4xl p-6">
+  <h1 class="mb-6 text-3xl font-semibold text-gray-900">Pólizas</h1>
+
+  @if (loading()) {
+    <p class="text-gray-600">Cargando pólizas...</p>
+  } @else if (error()) {
+    <p class="text-red-600">{{ error() }}</p>
+  } @else if (policies().length === 0) {
+    <p class="text-gray-600">No hay pólizas disponibles.</p>
+  } @else {
+    <div class="mb-4">
+      <app-policy-status-filter [(selectedStatus)]="selectedStatus" />
+    </div>
+
+    @if ((policies() | filterByStatus: selectedStatus()).length === 0) {
+      <p class="text-gray-600">No hay pólizas con el estado seleccionado.</p>
+    } @else {
+    <ul class="divide-y divide-gray-200 rounded-lg border border-gray-200 bg-white">
+      @for (policy of policies() | filterByStatus: selectedStatus(); track policy.id) {
+        <li
+          class="flex cursor-pointer items-center justify-between gap-4 border-l-4 p-4 hover:bg-gray-50"
+          [ngClass]="statusBorderClass[policy.status]"
+          (click)="navigateToPolicy(policy.id)"
+        >
+          <div>
+            <p class="font-medium text-gray-900">{{ policy.holder | textCapitalize }}</p>
+            <p class="text-sm text-gray-600">
+              {{ policy.status | textCapitalize }}
+            </p>
+          </div>
+        </li>
+      }
+    </ul>
+    }
+  }
+</section>
