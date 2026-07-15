@@ -1,20 +1,23 @@
-## Backend
-### Levantar proyecto
+# Prueba
 
-#### Requisitos previos
+## Levantar proyecto
+
+### Requisitos previos
 - Node.js >= 24.x
 - npm >= 11.x (o yarn/pnpm)
 
-#### Instalación y configuración
+### Instalación y configuración
 1. Clonar el repositorio
 2. Instalar dependencias
 
 ```bash
-npm install
+npm install --prefix backend
+npm install --prefix frontend
 ```
 
-3. Iniciar el servidor de desarrollo
+3. Iniciar el servidor de desarrollo del backend.
 
+Abrimos una terminal en el directorio "backend" y ejecutamos:
 ```bash
 npm run dev
 ```
@@ -25,8 +28,21 @@ O crear la app de producción:
 npm run preview
 ```
 
-### Decisiones de diseño
+4. Iniciar el servidor de desarrollo del frontend.
 
+Abrimos una terminal en el directorio "frontend" y ejecutamos:
+```bash
+npm start
+```
+La app se levantará en http://localhost:4200.
+
+O Build de producción
+```bash
+npm run preview
+```
+
+## Backend
+### Decisiones de diseño
 #### Uso de tsx en lugar de nodemon + ts-node
 Para la configuración del proyecto para el desarrollo, he decidido usar tsx ya que soporta typescript de forma nativa, su configuración y uso es más sencilla ya que no requiere de ficheros config para funcionar, es más rapido que nodemon + ts-node y la funcionalidad que nos interesa esta toda incluida en un solo paquete.
 
@@ -69,32 +85,6 @@ para /api/policies?limit=5&page=2
 ```
 
 ## Frontend
-
-### Levantar proyecto
-
-#### Requisitos previos
-- Node.js >= 24.x
-- npm >= 11.x (o yarn/pnpm)
-
-#### Instalación y configuración
-1. Clonar el repositorio
-2. Instalar dependencias
-
-```bash
-npm install
-```
-
-3. Iniciar el servidor de desarrollo
-```bash
-npm start
-```
-La app se levantará en http://localhost:4200.
-
-O Build de producción
-```bash
-npm run build
-```
-
 ### Decisiones de diseño
 #### SPA pura
 En este caso se instala Angular sin SSR, ya que en el enunciado se da a entender que backend y frontend son independientes.
@@ -104,3 +94,9 @@ Realiza la carga de los datos y guarda el listado para que sea accedido desde ot
 
 #### Generalización de las clases css para los estados
 Para aplicar el css se utiliza Tailwind CSS, los colores por estados se generalizan en el fichero policy-status-styles.ts para reutilizar las clases. 
+
+# Pregunta de reflexión
+
+> En una SPA Angular de escala media-grande, ¿cómo organizarías la gestión del estado de la aplicación? Justifica tu elección en función del contexto.
+
+Para la gestión de los estados locales al componente usaría signals(). Para los estados compartidos por varios componentes emplearía un store local al padre con @Injectable() el cual inyecto en los hijos para compartir el contenido, para datos generales como datos de autenticación o estado de la app que se obtienen mediante llamadas a servicios usaría un store general @Injectable({ providedIn: 'root' }) y finalmente para la gestión de datos obtenidos desde servidor usaría mecanismos de cache.

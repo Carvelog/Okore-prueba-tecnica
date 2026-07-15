@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+	"preview": "npm run build && npm run start"
   },
   "private": true,
   "packageManager": "npm@11.12.1",
